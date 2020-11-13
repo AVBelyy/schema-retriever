@@ -30,9 +30,8 @@ To query the Lucene index, use the `query-index.sh` script.
 Example usages (note that A_B_C syntax is used instead of A.B.C for event and relation types, to avoid undesired tokenization issues):
 
 ```
-# Count how many schemas that mention 'Conflict.Attack.*' events
+# Count how many schemas mention 'Conflict.Attack.*' events
 $ ./query-index.sh "$LUCENE_INDEX_PATH" 'Conflict_Attack_*' | wc -l
-60
 ```
 
 ```
