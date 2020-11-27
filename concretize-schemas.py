@@ -8,7 +8,7 @@ from concrete.util import CommunicationWriterTGZ, create_comm, AnalyticUUIDGener
 
 def main():
     parser = ArgumentParser(description='Convert a directory with KAIROS TA1 schemas into a single Concrete file')
-    parser.add_argument('json_in_dir', type=str, help='Directory with JSON-LD files (traversed recursively)')
+    parser.add_argument('json_in_dir', type=str, help='Directory with JSON-LD files')
     parser.add_argument('concrete_out_path', type=str, help='Path to a Concrete file')
     parser.add_argument('--print-docs', default=False, action='store_true', help='Print Concrete documents to stdout')
     args = parser.parse_args()
@@ -16,7 +16,7 @@ def main():
     num_schemas = 0
 
     with CommunicationWriterTGZ(args.concrete_out_path) as concrete_out:
-        for json_in_path in glob(f'{args.json_in_dir}/**/*.json'):
+        for json_in_path in glob(f'{args.json_in_dir}/*.json'):
             json_in_filename = os.path.basename(json_in_path)
             with open(json_in_path) as json_in:
                 schema_json = json.load(json_in)
@@ -52,7 +52,7 @@ def main():
                     )
                     concrete_out.write(comm, comm.id)
                     num_schemas += 1
-    
+
     print(f'Done writing {num_schemas} schemas to {args.concrete_out_path}')
 
 
