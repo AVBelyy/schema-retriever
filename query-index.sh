@@ -16,4 +16,4 @@ else
     MAX_RESULTS_STR=
 fi
 
-mvn --batch-mode --errors -f concrete-java/lucene exec:java -Dexec.mainClass="edu.jhu.hlt.concrete.lucene.ConcreteLuceneSearcher" -Dexec.args="--index-path \"$LUCENE_INDEX_PATH\" \"$QUERY_STR\" $MAX_RESULTS_STR" -q 2>/dev/null
+mvn --batch-mode --errors -f concrete-java/lucene exec:java -Dexec.mainClass="edu.jhu.hlt.concrete.lucene.ConcreteLuceneSearcher" -Dlog4j.threshold=FATAL -Dexec.args="--index-path \"$LUCENE_INDEX_PATH\" \"$QUERY_STR\" $MAX_RESULTS_STR" -q 2>/dev/null
