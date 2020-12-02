@@ -12,4 +12,5 @@ LUCENE_INDEX_PATH="$3"
 
 python concretize-schemas.py "$JSON_PATH" "$CONCRETE_PATH"
 
-mvn --batch-mode --errors --show-version -f concrete-java/lucene exec:java -Dexec.mainClass="edu.jhu.hlt.concrete.lucene.TarGzCommunicationIndexer" -Dexec.args="--input-path \"$CONCRETE_PATH\" --output-folder \"$LUCENE_INDEX_PATH\""
+JAR_PATH=$(ls concrete-java/lucene/target/concrete-lucene-*.jar | head -n 1)
+java -cp "$JAR_PATH" edu.jhu.hlt.concrete.lucene.TarGzCommunicationIndexer  --input-path "$CONCRETE_PATH" --output-folder "$LUCENE_INDEX_PATH" 2>/dev/null

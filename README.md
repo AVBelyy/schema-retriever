@@ -14,7 +14,7 @@ git submodule update
 
 # Build concrete-java
 cd concrete-java
-mvn package install
+mvn clean compile assembly:single
 cd ..
 
 # Install Python dependencies
